@@ -25,6 +25,6 @@ function ignoreFavicon(req, res, next) {
 }
 app.use(ignoreFavicon);
 
-var listener = app.listen(8080, function () {
+var listener = app.listen(8080 || process.env.PORT, function () {
   console.log("Listening on port " + listener.address().port);
 });

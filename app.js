@@ -17,6 +17,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
+function ignoreFavicon(req, res, next) {
+  if (req.originalUrl.includes('favicon.ico')) {
+    res.status(204).end()
+  }
+  next();
+}
+app.use(ignoreFavicon);
+
+
+
 var listener = app.listen(8080, function() {
   console.log("Listening on port " + listener.address().port);
 });
